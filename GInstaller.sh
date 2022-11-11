@@ -11,7 +11,7 @@ then
     echo "Can't find the RMS installation in your home directory, please install this 1st"
     echo " put link to install and opencv stuff here"
 else
-    wget https://github.com/edharman/gui-rms/blob/main/GUI_RMS.tar.bz2
+    wget https://github.com/edharman/gui-rms/raw/main/GUI_RMS.tar.bz2
     tar -xjvf GUI_RMS.tar.bz2
     echo -e "\nDo you wish to configure some stations?"
 	    while true; do
