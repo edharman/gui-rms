@@ -11,20 +11,30 @@ then
     echo "Can't find the RMS installation in your home directory, please install this 1st"
     echo " put link to install and opencv stuff here"
 else
-    wget https://github.com/edharman/gui-rms/raw/main/GUI_RMS.tar.bz2
-    tar -xjvf GUI_RMS.tar.bz2
-    echo -e "\nDo you wish to configure some stations?"
-	    while true; do
-   		    read -p  "Y/N: " Ans
-       	    case $Ans in 
-           	[yY]* ) 
-            cd ~/source/Stations/Scripts
-            ./add_GStation.sh ;;
-           	[nN] ) break ;;
-           	esac
-		done
-    fi
+mkdir .tmp
+cd .tmp
+	wget https://github.com/edharman/gui-rms/raw/main/GUI_RMS.tar.bz2
+	tar -xjf GUI_RMS.tar.bz2 -C ~/
+	cd ~/
+	rm -rf .tmp
+	fi
 fi
-echo "Your Station(s) are configured in direcotries named ~/source/Stations/<station-id>"
-echo " and the script to add additional stations is ~/Stations/Scripts/add_GStation.sh"
-echo " Your station data is locate in directories within ~/RMS_data/<station-id>"
+echo "Two new directories have been created -
+~/source/Stations
+~/source/Stations/Scripts
+
+~/source/Stations is where your individual camera configuration data will be stored with each directory named as per your station-id
+The Scripts directory contains a couple of helper files and two utility scripts -
+add_GStation.sh - a utility to add stations
+GRMSUpdater.sh - a utility to via cron schedule updates to the RMS code"
+
+echo -e "\nDo you wish to configure some stations?"
+read -p  "Y/N: " Ans
+case $Ans in 
+	[nN]* ) 
+	exit ;;
+esac
+cd ~/source/Stations/Scripts
+./add_GStation.sh
+
+
