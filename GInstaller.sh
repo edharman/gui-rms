@@ -1,7 +1,7 @@
 #!/bin/bash
 # check we're in the users home dir and that RMS has been installed
 this_user=$(ps -ef|awk '/xdm/ {print $1}')
-if $pwd != ${this_user}
+if [[ "$PWD" != /home/${this_user} ]] 
 then
     echo "this script should be run from your home directory"
     exit
@@ -13,13 +13,13 @@ then
 else
 mkdir .tmp
 cd .tmp
-	wget https://github.com/edharman/gui-rms/raw/main/GUI_RMS.tar.bz2
+	wget -q https://github.com/edharman/gui-rms/raw/main/GUI_RMS.tar.bz2
 	tar -xjf GUI_RMS.tar.bz2 -C ~/
 	cd ~/
 	rm -rf .tmp
 	fi
 fi
-echo "Two new directories have been created -
+echo -e "\nTwo new directories have been created -
 ~/source/Stations
 ~/source/Stations/Scripts
 
